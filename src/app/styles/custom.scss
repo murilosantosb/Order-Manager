@@ -1,0 +1,39 @@
+$pagination-color: #1d1c1c; 
+$pagination-bg: #fbfdff; 
+$pagination-border-color: #080808; 
+$pagination-hover-color: #ffffff; 
+$pagination-hover-bg: #111111; 
+$pagination-hover-border-color: #d3d6d8; 
+$pagination-active-color: #ffffff;
+$pagination-active-bg: #111111; 
+
+
+
+
+
+.input-search {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding-left: 5px;
+}
+
+.button-status {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+    padding-top: 5px;
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid rgb(177, 174, 174);
+    cursor: pointer;
+
+}
+
+.button-status:hover{
+    color: rgb(226, 226, 226);
+    background-color: rgb(46, 46, 46);
+}
+
+
+@import "bootstrap/scss/bootstrap";

@@ -1,85 +1,67 @@
-import React from 'react'
+"use client"
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, {useState} from 'react'
+
+import useSortDate from '@/lib/useSortDate'
 
 // Components
 import { Table } from "react-bootstrap"
 import PaginationComponent from './PaginationComponent'
+import { OrdersProps } from '@/interfaces/OrdersProps'
+import useCentsInReais from '@/lib/useCentsInReais'
 
-const OrdersTable: React.FC = () => {
+interface OrdersTableProps {
+    data: OrdersProps[];
+}
+
+type OrderData = "asc" | "desc" | "";
+
+const OrdersTable: React.FC<OrdersTableProps> = ({ data }) => {
+    const [orderDate, setOrderDate] = useState<OrderData>("")
+
+    const handleOrderDate = (e: React.MouseEvent<HTMLTableElement>, order: OrderData) => {
+        if(e) {
+            setOrderDate()
+        }
+    }
+
   return (
   <>
-    <Table hover responsive>
+    <Table hover responsive className='mb-5'>
         <thead>
             <tr>
                 <th>Clients</th>
                 <th>Status</th>
-                <th>Date</th>
+                <th className='cursor'>
+                    Date
+                    <i className="bi bi-chevron-expand"></i>
+                </th>
                 <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Vanessa de Arruda</strong>
-                    <p>vanessa.de.arruda@exemple.net</p>
-                </td>
-                <td>Pending</td>
-                <td>2014-11-17</td>
-                <td>R$ 1.729,11</td>
-            </tr>
+            {data && data ? (
+                data.map((orders) => (
+                    <tr key={orders.id}>
+                        <td>
+                            <strong>{orders.customer_name}</strong>
+                            <p>{orders.customer_email}</p>
+                        </td>
+                        <td>
+                            <strong className='border p-1 rounded-4'>
+                                {orders.status}
+                            </strong>
+                        </td>
+                        {/* <td>{orders.order_date}</td> */}
+                        <td>{}</td>
+                        <td>{useCentsInReais(orders.amount_in_cents)}</td>
+                    </tr>
+                ))
+            ) : (
+                <tr>
+                    <td>Carregando...</td>
+                </tr>
+            )}
         </tbody>
     </Table>
     <PaginationComponent/>

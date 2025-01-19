@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./styles/custom.scss"
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import { OrdersProvider } from "@/context/OrdersContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,9 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
+    <OrdersProvider>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+          {children}
       </body>
+    </OrdersProvider>
     </html>
   );
 }

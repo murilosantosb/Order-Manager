@@ -24,6 +24,7 @@
     "eslint-config-next": "15.1.4",
     "react-bootstrap": "^2.10.7",
     "sass": "^1.83.4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "use-debounce": "^10.0.4"
   }
 }

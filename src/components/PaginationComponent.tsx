@@ -1,10 +1,13 @@
 'use client'
 import React, { useState } from 'react';
+import { useOrdersContext } from '@/context/OrdersContext';
 
 import { Pagination } from 'react-bootstrap';
 
 
 const PaginationComponent: React.FC = () => {
+
+    const { setPage } = useOrdersContext()
 
     const totalPages = 30;
     const itemsPerPage = 10;
@@ -14,6 +17,7 @@ const PaginationComponent: React.FC = () => {
     const renderPaginationItems = () => {
         const items = []
         const rangeEnd = Math.min(rangeStart + itemsPerPage - 1, totalPages);
+        setPage(active)
 
         for(let number = rangeStart; number <= rangeEnd; number++) {
             items.push(
@@ -45,7 +49,7 @@ const PaginationComponent: React.FC = () => {
 
 
   return (
-    <Pagination className="d-flex justify-content-center">
+    <Pagination className="d-flex justify-content-center p-2">
     <Pagination.First onClick={() => {
       setActive(1);
       setRangerStart(1); // Volta para o primeiro intervalo

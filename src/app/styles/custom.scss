@@ -7,10 +7,6 @@ $pagination-hover-border-color: #d3d6d8;
 $pagination-active-color: #ffffff;
 $pagination-active-bg: #111111; 
 
-
-
-
-
 .input-search {
     border: none;
     outline: none;
@@ -30,10 +26,13 @@ $pagination-active-bg: #111111;
 
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 .button-status:hover{
     color: rgb(226, 226, 226);
     background-color: rgb(46, 46, 46);
 }
-
 
 @import "bootstrap/scss/bootstrap";

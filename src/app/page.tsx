@@ -13,7 +13,7 @@ import { useDebounce } from "use-debounce"
 
 export default function Home() {
 
-  const { page,search,status,date } = useOrdersContext();
+  const { page,search,status } = useOrdersContext();
 
   const [data, setData] = useState<OrdersProps[]>([]);
 
@@ -22,13 +22,13 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const fetchedData = await useFetch({ page, search, date, status })
+      const fetchedData = await useFetch({ page, search, status })
       setData(fetchedData);
       console.log(fetchedData)
     }
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, debounceSearch, status, date])
+  }, [page, debounceSearch, status])
 
 
 

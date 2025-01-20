@@ -39,5 +39,3 @@ export default async function useFetch({ page, search, status, date }: useFetchP
         return [];
     }
 }
-
-// `https://apis.codante.io/api/orders-api/orders?page=${page}&search=${search || ""}&status=${status || ""}&date=${date || ""}`

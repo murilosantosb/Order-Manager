@@ -1,8 +1,6 @@
 "use client"
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, {useState} from 'react'
-
-import useSortDate from '@/lib/useSortDate'
+import React from 'react'
 
 // Components
 import { Table } from "react-bootstrap"
@@ -14,16 +12,8 @@ interface OrdersTableProps {
     data: OrdersProps[];
 }
 
-type OrderData = "asc" | "desc" | "";
 
 const OrdersTable: React.FC<OrdersTableProps> = ({ data }) => {
-    const [orderDate, setOrderDate] = useState<OrderData>("")
-
-    const handleOrderDate = (e: React.MouseEvent<HTMLTableElement>, order: OrderData) => {
-        if(e) {
-            setOrderDate()
-        }
-    }
 
   return (
   <>
@@ -52,8 +42,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({ data }) => {
                                 {orders.status}
                             </strong>
                         </td>
-                        {/* <td>{orders.order_date}</td> */}
-                        <td>{}</td>
+                        <td>{orders.order_date}</td>
                         <td>{useCentsInReais(orders.amount_in_cents)}</td>
                     </tr>
                 ))

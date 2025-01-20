@@ -6,11 +6,9 @@ interface OrdersContextProps {
     page: number;
     search: string;
     status: string;
-    date: string;
     setPage: (page: number) => void;
     setSearch: (search: string) => void;
     setStatus: (status: "pending" | "completed" | "") => void;
-    setDate: (date: string, order?: "asc" | "desc" | "") => void; 
 }
 
 
@@ -19,11 +17,10 @@ const OrdersContext = createContext<OrdersContextProps | undefined>(undefined);
 export const OrdersProvider : React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
-    const [status, setStatus] = useState("")
-    const [date, setDate] = useState("")
+    const [status, setStatus] = useState("");
 
     return(
-        <OrdersContext.Provider value={{page,search,status,date,setPage,setSearch,setStatus,setDate}}>
+        <OrdersContext.Provider value={{page,search,status,setPage,setSearch,setStatus}}>
             {children}
         </OrdersContext.Provider>
     )
@@ -31,14 +28,11 @@ export const OrdersProvider : React.FC<{ children: React.ReactNode }> = ({ child
 
 
 export const useOrdersContext = () => {
-    const context = use(OrdersContext)
+    const context = use(OrdersContext);
 
     if(!context) {
-        throw new Error("Contexto não válido!")
+        throw new Error("Contexto não válido!");
     }
 
-    return context
+    return context;
 }
-
-
-// page, search, status, date
